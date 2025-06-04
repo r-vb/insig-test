@@ -1,0 +1,164 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: white;
+  background-image: linear-gradient(#C13B11, #AA1212), url("img/bg_d.webp");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+
+/* Back button container - center on all screens */
+.bb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.back-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Responsive back button */
+.back-button {
+  width: 120px;
+  max-width: 80%;
+  height: 50px;
+  background: url('img/back_d.webp') center center no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-size: 14px;
+  color: white;
+  text-align: center;
+  padding: 0;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 50px;
+  padding: 30px 60px;
+  justify-items: center;
+  flex: 1;
+}
+
+.card-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  background: url('img/photobg_d.webp') center center no-repeat;
+  border: 3px solid #F8861E;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 250px;
+  height: 300px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-pic {
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.icons img {
+  width: 26px;
+  height: 44px;
+}
+
+.flowercase {
+  background: url('img/flowercase_d.webp') center center no-repeat;
+  background-size: 400px;
+  height: 150px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 400px;
+  margin-top: 10px;
+}
+
+.flowercase .name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.flowercase .title {
+  font-size: 14px;
+}
+
+/* Responsive Footer */
+.footer {
+  width: 100%;
+  margin-top: auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+.footer img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+}
+
+/* Media Queries for cards layout */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 15px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    padding: 20px 10px;
+  }
+
+  .back-button {
+    width: 90px;
+    font-size: 12px;
+  }
+
+  .flowercase {
+    max-width: 400px;
+  }
+}

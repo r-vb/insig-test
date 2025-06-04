@@ -1,0 +1,106 @@
+
+
+/* Basic body setup for mobile compatibility */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #FDE88D 0%, #FFCB9C 40%, #FDA8A5 100%);
+    color: #333;
+  
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* Container box */
+.form-container {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 0.75rem; /* More rounded */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 28rem; /* Around max-w-lg */
+}
+
+/* Form heading */
+.form-container h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Input styles */
+.input {
+    display: block;
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db; /* Tailwind's gray-300 */
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: #f9fafb; /* Slightly off-white */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Input focus effect */
+.input:focus {
+    outline: none;
+    border-color: #6366f1; /* Tailwind's indigo-500 */
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    background-color: #fff;
+}
+
+/* Textarea adjustment */
+textarea.input {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Button styles */
+.submit-btn {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    background-color: #4f46e5; /* Indigo-600 */
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Button hover effect */
+.submit-btn:hover {
+    background-color: #4338ca; /* Indigo-700 */
+}
+
+/* Success and error messages */
+.alert {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #34d399; /* green-400 */
+    color: #ffffff;
+}
+
+.alert-error {
+    background-color: #f87171; /* red-400 */
+    color: #ffffff;
+}
+
+/* Responsive tweak if needed */
+@media (max-width: 4000vw) {
+    .form-container {
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+}

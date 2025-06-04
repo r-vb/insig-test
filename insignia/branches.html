@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Branch Events</title>
+  <link rel="stylesheet" href="events.css" />
+</head>
+<body>
+
+  <!-- Navbar reused -->
+  <!-- <nav class="navbar">
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="history.back()">Back</button>
+  </nav> -->
+
+  <main id="branchContainer">
+    <section class="event-section">
+      <img src="img/Technical.png" alt="Technical" class="section-img" />
+      <h2 id="branchTitle" class="event-title">Branch Events</h2>
+      <div id="branchEvents" class="event-buttons">
+        <!-- Dynamic buttons inserted via JS -->
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const branchEvents = {
+      CSE: ["Code Hunt", "Hackathon", "Debugging", "Tech Quiz"],
+      IS: ["Web Design", "App Pitch", "Cyber Maze"],
+      AIML: ["ML Model Challenge", "AI Debate", "Vision Lab"],
+      "E&C": ["Circuit Mania", "Signal Hunt"],
+      CIVIL: ["Blueprint Battle", "Bridge Builder"]
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const branch = params.get("branch");
+
+    const title = document.getElementById("branchTitle");
+    const container = document.getElementById("branchEvents");
+
+    if (branch && branchEvents[branch]) {
+      title.textContent = `${branch} Events`;
+      branchEvents[branch].forEach(event => {
+        const a = document.createElement("a");
+        a.href = `details.html?event=${encodeURIComponent(event)}`;
+        a.textContent = event;
+        container.appendChild(a);
+      });
+    } else {
+      title.textContent = "Branch Not Found";
+    }
+  </script>
+
+</body>
+</html>

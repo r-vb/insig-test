@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Schedule</title>
+  <link rel="stylesheet" href="schedule.css">
+</head>
+<body>
+    <!-- <div class="events">
+        <div class="events-bg">
+             <img src="../desktop/bg_d.webp" alt="Event Image">
+            </div>
+        </div> -->
+  <div class="container">
+    <h1>Event Schedule</h1>
+    <div class="tab-btn-container">
+      <div class="tab-btn active" data-category="centralised">CENTRALISED</div>
+      <div class="tab-btn" data-category="cultural">CULTURAL</div>
+      <div class="tab-btn" data-category="technical">TECHNICAL</div>
+    </div>
+    <div class="day-btn-container">
+      <div class="day-btn active" data-date="16-05-25">DAY 1<br>16-05-2025</div>
+      <div class="day-btn" data-date="17-05-25">DAY 2<br>17-05-2025</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr class="header">
+          <th>Event</th>
+          <th>Time</th>
+          <th>Venue</th>
+        </tr>
+      </thead>
+      <tbody id="eventTable">
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <script>
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const dayBtns = document.querySelectorAll('.day-btn');
+    const tableBody = document.getElementById('eventTable');
+    
+    const events = {
+      centralised: {
+        '16-05-25': [
+          { event: "Roadies", time: "7:00 AM - 10:30 AM", venue: "College Ground" },
+          { event: "Mocktail", time: "10:00 AM - 1:30 PM", venue: "Cafe" },
+          { event: "Show your guts", time: "10:00 AM - 1:30 PM", venue: "Sports complex" },
+          { event: "Photography", time: "10:30 AM - 12:00 PM", venue: "DVH Hall" },
+          { event: "Squid game", time: "11:00 AM - 2:00 PM", venue: "MBA Parking" },
+          { event: "Debate", time: "10:00 AM - 12:30 PM", venue: "Seminar Hall" },
+          { event: "Gaming", time: "10:00 AM - 5:00 PM", venue: "Library" },
+          { event: "Cultural clash", time: "7:00 PM - 8:00 PM", venue: "Main stage" },
+        ],
+        '17-05-25': [
+          { event: "Big Bite Battle", time: "11:00 AM - 2:30 PM", venue: "Opposite to canteen" },
+          { event: "Roadies", time: "7:00 AM - 10:30 AM", venue: "College Ground" },
+          { event: "Mocktail", time: "10:00 AM - 1:30 PM", venue: "Cafe" },
+          { event: "Mock Press", time: "2:00 PM - 3:30 PM", venue: "Seminar Hall" },
+          { event: "Photography", time: "2:00 PM - 4:00 PM", venue: "Room No. 22" },
+          { event: "Gaming", time: "10:00 AM - 5:00 PM", venue: "Library" },
+          { event: "Geek Olympics", time: "11:00 AM - 1:30 PM", venue: "P-CAD Lab" },
+          { event: "Squid game", time: "11:00 AM - 2:00 PM", venue: "MBA Parking" },
+        ]
+      },
+      cultural: {
+        '16-05-25': [
+          { event: "Mad-Ads (Dramatics)", time: "11:00 AM - 12:00 NOON", venue: "Auditorium" },
+          { event: "Eastern Group Dance (Prelims)", time: "12:30 PM - 3:00 PM", venue: "Auditorium" },
+          { event: "Western Group Dance (Prelims)", time: "11:00 AM - 1:00 PM", venue: "DVH Hall" },
+          { event: "Western Group Vocals (Prelims)", time: "1:30 PM - 3:30 PM", venue: "DVH Hall" },
+          { event: "Street Play (Dramatics)", time: "3:00 PM - 5:00 PM", venue: "Administrative Block" },
+          { event: "Eastern Group Vocals (Finals)", time: "4:00 PM - 6:00 PM", venue: "Auditorium" },
+          { event: "Eastern Group Dance (Finals)", time: "6:30 PM - 8:30 PM", venue: "Auditorium" },
+        ],
+        '17-05-25': [
+        { event: "Eastern Dance Solo", time: "11:00 AM - 1:30 PM", venue: "Auditorium" },
+{ event: "Western Dance Solo", time: "1:30 PM - 4:00 PM", venue: "Auditorium" },
+{ event: "Skit (Dramatics)", time: "4:30 PM - 6:00 PM", venue: "Auditorium" },
+{ event: "Instrumental Solo (Musical)", time: "10:00 AM - 2:00 PM", venue: "DVH" },
+{ event: "Eastern Vocal Solo (Musical)", time: "10:00 AM - 2:00 PM", venue: "DVH" },
+{ event: "Western Vocal Solo (Musical)", time: "10:00 AM - 2:00 PM", venue: "DVH" },
+{ event: "Classical Vocal Solo (Musical)", time: "10:00 AM - 2:00 PM", venue: "DVH" },
+{ event: "Face-Off", time: "4:00 PM - 5:30 PM", venue: "Auditorium" },
+{ event: "Collage (Fine Arts)", time: "9:00 AM - 11:00 AM", venue: "D1 Hall" },
+{ event: "Face Painting (Fine Arts)", time: "1:00 PM - 3:00 PM", venue: "D1 Hall" },
+{ event: "Live In Concert", time: "7:30 PM - 10:30 PM", venue: "Outdoor Stage" },
+        ]
+      },
+      technical: {
+        '16-05-25': [
+          { event: "Code Wars", time: "10:30 AM - 1:30 PM", venue: "CodeLab" },
+          { event: "Quiz Master", time: "11:00 AM - 1:30 PM", venue: "Seminar Hall" },
+          { event: "AI in Today's World", time: "2:00 PM - 3:00 PM", venue: "Main Stage" },
+        ]
+      }
+    };
+    
+    
+    let selectedCategory = 'centralised';
+    let selectedDate = '16-05-25';
+    
+    function updateTable() {
+      const categoryEvents = events[selectedCategory];
+      const selectedEvents = categoryEvents[selectedDate];
+      tableBody.innerHTML = '';
+      selectedEvents.forEach(event => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td data-label="Event">${event.event}</td>
+          <td data-label="Time">${event.time}</td>
+          <td data-label="Venue">${event.venue}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+    
+   
+    tabBtns.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabBtns.forEach(button => button.classList.remove('active'));
+        tab.classList.add('active');
+        selectedCategory = tab.getAttribute('data-category');
+        updateTable();
+      });
+    });
+    
+    dayBtns.forEach(day => {
+      day.addEventListener('click', () => {
+        dayBtns.forEach(button => button.classList.remove('active'));
+        day.classList.add('active');
+        selectedDate = day.getAttribute('data-date');
+        updateTable();
+      });
+    });
+    
+    
+    updateTable();
+    </script>
+</body>
+</html>
